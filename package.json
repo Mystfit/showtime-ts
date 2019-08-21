@@ -1,7 +1,7 @@
 {
-  "name": "Showtime-Js",
+  "name": "showtime-ws",
   "version": "1.0.0",
-  "homepage": "https://github.com/mystfit/Showtime-Js",
+  "homepage": "https://github.com/mystfit/showtime-ws",
   "description": "Showtime dataflow network library",
   "main": "dist/showtime.js",
   "module": "dist/showtime.es.js",
@@ -15,7 +15,7 @@
     "test": "jest"
   },
   "repository": {
-    "url": "https://github.com/mystfit/Showtime-Js",
+    "url": "https://github.com/mystfit/showtime-ws",
     "type": "git"
   },
   "author": "Byron Mallett",
