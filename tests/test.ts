@@ -2,7 +2,7 @@
 import { greet } from '../dist/showtime';
 
 describe('test', () => {
-  it('should pass', () => {
+  it('greet', () => {
   	expect(greet()).toBe('Hello, world!');
   });
 });
