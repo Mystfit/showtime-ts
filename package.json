@@ -1,0 +1,34 @@
+{
+  "name": "Showtime-Js",
+  "version": "1.0.0",
+  "homepage": "https://github.com/mystfit/Showtime-Js",
+  "description": "Showtime dataflow network library",
+  "main": "dist/showtime.js",
+  "module": "dist/showtime.es.js",
+  "files": [
+    "dist"
+  ],
+  "types": "dist/showtime.d.ts",
+  "scripts": {
+    "build": "rollup -c",
+    "watch": "rollup -cw",
+    "test": "jest"
+  },
+  "repository": {
+    "url": "https://github.com/mystfit/Showtime-Js",
+    "type": "git"
+  },
+  "author": "Byron Mallett",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "rollup": "^1.19.4",
+    "rollup-plugin-typescript2": "^0.22.1",
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "@types/jest": "^24.0.18",
+    "ts-jest": "^24.0.2"
+  }
+}
