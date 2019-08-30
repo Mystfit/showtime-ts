@@ -1,11 +1,15 @@
-import { WebsocketTransport } from "ws_transport"
+import { Performer } from "./performer"
+import { WebsocketTransport } from "./ws_transport"
 
-export const greet = () => {return 'Hello, world!'}
 
-class Client {
+export class Client {
 	private _ws_transport:WebsocketTransport;
 
-	constructor(address:string){
-		this._ws_transport = new WebsocketTransport(address, 80);
+	constructor(address:string, port:number = 80){
+		this._ws_transport = new WebsocketTransport(address, port);
+	}
+
+	join(address:string, port:number){
+		this._ws_transport.ws.send(JSON.stringify({"kind": "CLIENT_JOIN", "msg_ID": 1, "payload": {}}));
 	}
 }

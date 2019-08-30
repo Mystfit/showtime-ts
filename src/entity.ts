@@ -1,4 +1,4 @@
-import { Serialisable } from "serialisable"
+import { Serialisable } from "./serialisable"
 
 export class Entity extends Serialisable {
 
