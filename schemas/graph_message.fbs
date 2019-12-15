@@ -1,0 +1,10 @@
+include "graph_types.fbs";
+
+namespace showtime;
+
+table GraphMessage {
+    sender: string;
+    value: PlugValue;
+}
+
+root_type GraphMessage;

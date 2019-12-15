@@ -1,7 +1,7 @@
 {
-  "name": "showtime-ws",
+  "name": "showtime-ts",
   "version": "1.0.0",
-  "homepage": "https://github.com/mystfit/showtime-ws",
+  "homepage": "https://github.com/mystfit/showtime-ts",
   "description": "Showtime dataflow network library",
   "main": "dist/showtime.js",
   "module": "dist/showtime.es.js",
@@ -15,13 +15,16 @@
     "test": "jest"
   },
   "repository": {
-    "url": "https://github.com/mystfit/showtime-ws",
+    "url": "https://github.com/mystfit/showtime-ts",
     "type": "git"
   },
   "author": "Byron Mallett",
   "license": "MIT",
   "private": false,
   "devDependencies": {
+    "@types/flatbuffers": "^1.9.1",
+    "@types/urijs": "^1.19.4",
+    "@types/ws": "^6.0.2",
     "@types/jest": "^24.0.18",
     "jest": "^24.9.0",
     "jest-websocket-mock": "^1.5.0",
@@ -33,9 +36,9 @@
     "typescript": "^3.5.3"
   },
   "dependencies": {
-    "@msgpack/msgpack": "^1.8.0",
-    "@types/ws": "^6.0.2",
+    "flatbuffers": "^1.11.0",
     "isomorphic-ws": "^4.0.1",
+    "urijs": "^1.19.2",
     "ws": "^7.1.2"
   }
 }
