@@ -1,38 +1,36 @@
-import { Serialisable } from "./serialisable"
+// import {staticImplements} from "./serialisable"
+import * as Serialisation from "./serialisable"
 import { flatbuffers } from "flatbuffers";
 import { showtime } from "./schemas/graph_types_generated"
 
-export class Entity implements Serialisable {
+export class Entity implements Serialisation.Serialisable<showtime.Entity> {
     public URI: URL;
     public owner: URL;
     public registered: boolean;
     public entity_type: showtime.EntityTypes;
 
-    constructor(name: string=""){
+    constructor(name: string="", type:showtime.EntityTypes=showtime.EntityTypes.NONE){
         this.URI = new URL(name, "zst://");
-        this.owner = new URL("zst://");
+        this.owner = new URL("", "zst://");
         this.registered = false;
         this.entity_type = showtime.EntityTypes.NONE;
     }
 
     public serialize(builder: flatbuffers.Builder): flatbuffers.Offset {
-        return showtime.Entity.createEntity(builder, this.serialize_partial(builder));
+        return showtime.Entity.createEntity(builder, this.serialize_entityData(builder));
     }
 
-    public serialize_partial(builder: flatbuffers.Builder) : flatbuffers.Offset {
+    public serialize_entityData(builder: flatbuffers.Builder) : flatbuffers.Offset {
         return showtime.EntityData.createEntityData(builder, builder.createString(this.URI.toString()), builder.createString(this.owner.toString()));
     }
 
-    public static deserialize(buffer: showtime.Entity): Entity {
-        let entity = new Entity();
-        entity.deserialize_partial(buffer.entity());
-        return entity;
+    public deserialize(buffer: any): Entity {
+        this.deserialize_entityData(buffer.entity());
+        return this;
     }
 
-    public deserialize_partial(buffer: showtime.EntityData|null): void {
-        if(!buffer)
-            return;
-
+    public deserialize_entityData(buffer: showtime.EntityData|null): void {
+        if(!buffer) return;
         this.URI = new URL(buffer.URI() ? buffer.URI()! : "");
         this.owner = new URL(buffer.owner() ? buffer.owner()! : "");
     }

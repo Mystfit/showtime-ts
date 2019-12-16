@@ -1,7 +1,10 @@
 module.exports = {
   roots: [
-  	"./src",
+  	//"./src",
     "./tests"
+  ],
+  collectCoverageFrom: [
+    "src/**/{!(schemas),}.js"
   ],
   modulePaths: ["./src"],
   moduleDirectories: ["node_modules"],
