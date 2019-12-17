@@ -1,4 +1,4 @@
-import { Performer } from "./performer"
+import { Performer } from "./entities/performer"
 import { WebsocketTransport } from "./ws_transport"
 
 

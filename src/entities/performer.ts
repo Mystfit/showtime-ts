@@ -1,12 +1,12 @@
-import * as Serialisation from "./serialisable"
+import * as Serialisation from "../serialisable"
 import { Component } from "./component"
 import { Entity } from "./entity"
 import { flatbuffers } from "flatbuffers";
-import { showtime } from "./schemas/graph_types_generated"
+import { showtime } from "../schemas/graph_types_generated"
 
 export class Performer extends Component implements Serialisation.Serialisable<showtime.Performer>{
     constructor(name: string=""){
-        super("", name, showtime.EntityTypes.Performer);
+        super(name, "", showtime.EntityTypes.Performer);
     }
 
     public serialize(builder: flatbuffers.Builder): flatbuffers.Offset {

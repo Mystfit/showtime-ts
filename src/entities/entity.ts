@@ -1,7 +1,6 @@
-// import {staticImplements} from "./serialisable"
-import * as Serialisation from "./serialisable"
+import * as Serialisation from "../serialisable"
 import { flatbuffers } from "flatbuffers";
-import { showtime } from "./schemas/graph_types_generated"
+import { showtime } from "../schemas/graph_types_generated"
 
 export class Entity implements Serialisation.Serialisable<showtime.Entity> {
     public URI: URL;

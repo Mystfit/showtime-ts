@@ -1,12 +1,12 @@
-import * as Serialisation from "./serialisable"
+import * as Serialisation from "../serialisable"
 import { Entity } from "./entity"
 import { flatbuffers } from "flatbuffers";
-import { showtime } from "./schemas/graph_types_generated"
+import { showtime } from "../schemas/graph_types_generated"
 
 export class Component extends Entity implements Serialisation.Serialisable<showtime.Component>{
     public component_type: string;
 
-    constructor(type: string="", name: string="", entity_type:showtime.EntityTypes=showtime.EntityTypes.Component){
+    constructor(name: string="", type: string="", entity_type:showtime.EntityTypes=showtime.EntityTypes.Component){
         super(name, entity_type);
         this.component_type = type;
     }
@@ -31,5 +31,4 @@ export class Component extends Entity implements Serialisation.Serialisable<show
         if(!buffer) return;
         this.component_type = buffer.componentType() ? buffer.componentType()! : "";
     }
-    
 }
