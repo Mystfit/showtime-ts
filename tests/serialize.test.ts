@@ -1,7 +1,9 @@
 import { Entity } from "../src/entities/entity"
+import { Factory } from "../src/entities/factory"
 import { Component } from "../src/entities/component"
 import { Performer } from "../src/entities/performer"
 import { Plug } from "../src/entities/plug"
+import { Cable } from "../src/cable"
 
 import { showtime } from '../src/schemas/graph_types_generated'
 import { flatbuffers } from "flatbuffers"
@@ -29,8 +31,22 @@ describe('Can serialize entity type', () => {
         expect(new Performer().deserialize(showtime.Performer.getRootAsPerformer(builder.dataBuffer()))).toEqual(performer);
     });
 
+    it('is a Factory', async () => {
+        const factory = new Factory("factory");
+        let builder = new flatbuffers.Builder();
+        builder.finish(factory.serialize(builder));
+        expect(new Factory().deserialize(showtime.Factory.getRootAsFactory(builder.dataBuffer()))).toEqual(factory);
+    });
+
+    it('is a Cable', async () => {
+        const cable = new Cable("a", "b");
+        let builder = new flatbuffers.Builder();
+        builder.finish(cable.serialize(builder));
+        expect(new Cable().deserialize(showtime.Cable.getRootAsCable(builder.dataBuffer()))).toEqual(cable);
+    });
+
     it('is an empty Plug', async () => {
-        const plug = new Plug("test_plug", showtime.ValueList.IntList);
+        const plug = new Plug("test_plug");
         let builder = new flatbuffers.Builder();
         builder.finish(plug.serialize(builder));
         expect(new Plug().deserialize(showtime.Plug.getRootAsPlug(builder.dataBuffer()))).toEqual(plug);

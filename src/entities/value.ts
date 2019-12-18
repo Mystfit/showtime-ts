@@ -29,13 +29,10 @@ export class Value implements Serialisation.Serialisable<showtime.PlugValue>{
         } else if(this.value_type == showtime.ValueList.StrList){
             let str_arr = this.as_str_array();
             let str_offsets = new Array<flatbuffers.Offset>(str_arr.length);
-            str_arr.forEach((element, index) => {
-                str_offsets[index] = builder.createString(element);
-            });
+            str_arr.forEach((element, index) => { str_offsets[index] = builder.createString(element); });
             return showtime.PlugValue.createPlugValue(builder, showtime.ValueList.StrList, showtime.StrList.createStrList(builder, showtime.StrList.createValVector(builder, str_offsets)));
         }
-        
-        throw `Can't serialize unknown ValueList type ${showtime.ValueList[this.value_type]}`;
+        return showtime.PlugValue.createPlugValue(builder, this.value_type, showtime.StrList.createValVector(builder, []));
     }
 
     public deserialize(buffer: showtime.PlugValue): Value {
@@ -46,10 +43,8 @@ export class Value implements Serialisation.Serialisable<showtime.PlugValue>{
     public deserialize_plugValueData(buffer: showtime.PlugValue|null): void {
         if(!buffer) return;
         this.value_type = buffer.valuesType();
-        this.values.splice(0, this.values.length);
 
         let values: Int32Array|Float32Array|string[]|null;
-
         if(buffer.valuesType() == showtime.ValueList.IntList){
             values = buffer.values<showtime.IntList>(new showtime.IntList())!.valArray();
         } else if(buffer.valuesType() == showtime.ValueList.FloatList){
@@ -66,8 +61,9 @@ export class Value implements Serialisation.Serialisable<showtime.PlugValue>{
         }
         if(!values) return;
 
+        this.values.length = values.length;
         for(let index: number = 0; index < values!.length; ++index){
-            this.values.push(values![index]);
+            this.values[index] = (values![index]);
         }
     }
 

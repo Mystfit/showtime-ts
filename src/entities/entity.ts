@@ -23,7 +23,7 @@ export class Entity implements Serialisation.Serialisable<showtime.Entity> {
         return showtime.EntityData.createEntityData(builder, builder.createString(this.URI.toString()), builder.createString(this.owner.toString()));
     }
 
-    public deserialize(buffer: any): Entity {
+    public deserialize(buffer: showtime.Entity): Entity {
         this.deserialize_entityData(buffer.entity());
         return this;
     }
