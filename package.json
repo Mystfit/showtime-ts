@@ -38,7 +38,7 @@
   "dependencies": {
     "flatbuffers": "^1.11.0",
     "isomorphic-ws": "^4.0.1",
-    "urijs": "^1.19.7",
+    "urijs": "^1.19.11",
     "ws": "^7.4.6"
   }
 }
